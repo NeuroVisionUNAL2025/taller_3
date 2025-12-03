@@ -97,15 +97,39 @@ El vector de características total tiene aproximadamente 1,823 dimensiones.
 
 A continuación se muestran ejemplos de la extracción de algunos descriptores clave:
 
+**Imagen preprocesada de referencia:**
+
+La siguiente imagen muestra la imagen de ejemplo utilizada para la extracción de descriptores, ya preprocesada con redimensionamiento y CLAHE.
+
 ![Imagen preprocesada](assets/figures/02_features/02_image_preprocessed.png)
+
+**Variaciones del Descriptor HOG:**
+
+Esta figura muestra una grilla de 3×3 con diferentes configuraciones del descriptor HOG. La primera fila varía el número de bins de orientación (12, 9, 6) manteniendo el tamaño de celda constante. La segunda fila varía el tamaño de celda (8×8, 16×16, 32×32) manteniendo 9 bins. La tercera fila muestra combinaciones de ambos parámetros. Se observa cómo celdas más pequeñas y más bins capturan detalles más finos, mientras que celdas grandes y pocos bins capturan información más global.
 
 ![Variaciones del Descriptor HOG](assets/figures/02_features/02_hog_variations.png)
 
+**Contorno Detectado:**
+
+Esta figura muestra el resultado de la segmentación mediante umbralización de Otsu y la detección del contorno principal. El contorno detectado se dibuja en azul sobre la máscara binaria. Este contorno se utiliza para calcular descriptores geométricos como área, perímetro, circularidad y excentricidad.
+
 ![Contorno Detectado](assets/figures/02_features/02_contour_descriptors.png)
+
+**Descriptores de Fourier - Magnitudes:**
+
+Esta gráfica muestra las magnitudes de los primeros coeficientes de los descriptores de Fourier del contorno. Los coeficientes iniciales (especialmente el primero) tienen valores altos, representando la forma general del objeto. Los coeficientes de orden superior tienden a cero, indicando que el contorno no tiene detalles finos o curvaturas complejas. El pico en el coeficiente 2 sugiere una forma elíptica o alargada.
 
 ![Descriptores de Fourier - Magnitudes](assets/figures/02_features/02_fourier_descriptors.png)
 
+**Variaciones de LBP - Imágenes:**
+
+Esta grilla de 3×3 muestra las imágenes resultantes de aplicar el operador LBP con diferentes configuraciones de parámetros P (número de puntos vecinos) y R (radio). Cada imagen muestra los patrones binarios locales detectados, donde diferentes configuraciones capturan texturas a diferentes escalas: valores pequeños de R capturan texturas finas, mientras que valores mayores capturan texturas más gruesas.
+
 ![Variaciones de LBP - Imágenes](assets/figures/02_features/02_lbp_images.png)
+
+**Variaciones de LBP - Histogramas:**
+
+Esta grilla de 3×3 muestra los histogramas correspondientes a las imágenes LBP anteriores. Cada histograma representa la distribución de frecuencia de los patrones binarios locales detectados. Se observa cómo diferentes configuraciones de P y R producen distribuciones distintas, capturando diferentes aspectos de la textura de la imagen.
 
 ![Variaciones de LBP - Histogramas](assets/figures/02_features/02_lbp_histograms.png)
 
@@ -137,6 +161,8 @@ A continuación se muestran ejemplos de la extracción de algunos descriptores c
 **Distribución de clases:**
 - El dataset está significativamente desbalanceado, con aproximadamente 2.9 veces más casos de PNEUMONIA que NORMAL en el conjunto de entrenamiento.
 
+La siguiente figura muestra la distribución de clases en el dataset, donde se puede observar el desbalance significativo: el conjunto de entrenamiento tiene 3,875 casos de PNEUMONIA frente a 1,341 casos de NORMAL, mientras que en el conjunto de prueba hay 390 casos de PNEUMONIA y 234 de NORMAL. El conjunto de validación es muy pequeño con solo 8 casos de cada clase.
+
 ![Distribución de clases](assets/figures/01_exploratory/01_class_distribution.png)
 
 **Tamaños de imágenes:**
@@ -144,17 +170,19 @@ A continuación se muestran ejemplos de la extracción de algunos descriptores c
 - Mediana: 1281×888 píxeles
 - Se decidió redimensionar a 256×256 para uniformidad y eficiencia computacional.
 
+La siguiente figura muestra la distribución de los tamaños originales de las imágenes del dataset mediante histogramas. Se observan dos distribuciones superpuestas: una para el ancho (width) y otra para el alto (height) de las imágenes. La variabilidad en los tamaños justifica la necesidad de redimensionar todas las imágenes a un tamaño uniforme de 256×256 píxeles para el procesamiento.
+
 ![Análisis de tamaños de imágenes](assets/figures/01_exploratory/01_image_sizes.png)
 
 **Ejemplos de imágenes de ambas clases:**
 
-La siguiente figura muestra ejemplos de imágenes originales y su versión procesada con CLAHE:
+La siguiente figura muestra ejemplos de imágenes de ambas clases (NORMAL y PNEUMONIA) en dos filas: la fila superior muestra las imágenes originales tal como se encuentran en el dataset, y la fila inferior muestra las mismas imágenes después de aplicar el preprocesamiento con CLAHE. Se puede observar cómo CLAHE mejora el contraste local, haciendo más visibles las estructuras anatómicas y los patrones relevantes para la clasificación.
 
 ![Ejemplos de imágenes originales vs procesadas con CLAHE](assets/figures/01_exploratory/01_examples_original.png)
 
 **Efecto del preprocesamiento (CLAHE):**
 
-El preprocesamiento con CLAHE mejora significativamente la visibilidad de estructuras anatómicas en las radiografías. A continuación se muestra una comparación de los histogramas antes y después de aplicar CLAHE:
+El preprocesamiento con CLAHE mejora significativamente la visibilidad de estructuras anatómicas en las radiografías. La siguiente figura compara los histogramas de intensidad de una imagen antes y después de aplicar CLAHE. El histograma original (izquierda) muestra una distribución concentrada en ciertos rangos de intensidad, mientras que el histograma después de CLAHE (derecha) muestra una distribución más uniforme a lo largo de todo el rango [0, 255], lo que indica una mejor utilización del rango dinámico y un contraste mejorado.
 
 ![Comparación de histogramas antes y después de CLAHE](assets/figures/01_exploratory/01_histogram_comparison.png)
 
@@ -229,13 +257,19 @@ El modelo CNN también muestra un sesgo hacia la clase PNEUMONIA, con recall per
 
 **Matriz de confusión de la CNN:**
 
+La siguiente matriz de confusión muestra el rendimiento de la CNN en el conjunto de validación. Los valores en la diagonal principal representan las clasificaciones correctas, mientras que los valores fuera de la diagonal representan errores. Se observa que el modelo clasifica correctamente todos los casos de PNEUMONIA (8/8), pero solo 3 de 8 casos de NORMAL, confirmando el sesgo hacia la clase mayoritaria.
+
 ![Matriz de confusión de la CNN](assets/figures/03_classification/03_cnn_confusion_matrix.png)
 
 **Curva ROC de la CNN:**
 
+La curva ROC (Receiver Operating Characteristic) muestra la relación entre la tasa de verdaderos positivos (TPR) y la tasa de falsos positivos (FPR) para diferentes umbrales de decisión. El área bajo la curva (AUC) de 0.7188 indica un rendimiento moderado. La línea punteada diagonal representa el rendimiento de un clasificador aleatorio. La curva por encima de esta línea indica que el modelo tiene capacidad discriminativa, aunque limitada por el pequeño tamaño del conjunto de validación.
+
 ![Curva ROC de la CNN](assets/figures/03_classification/03_cnn_roc_curve.png)
 
 **Ejemplos de predicciones de la CNN:**
+
+Esta grilla de 2×3 muestra 6 ejemplos aleatorios del conjunto de validación con sus predicciones. Cada imagen muestra la etiqueta real (Real), la predicción del modelo (Pred) y la probabilidad asignada entre paréntesis. Se puede observar visualmente casos correctamente clasificados y casos donde el modelo comete errores, lo que ayuda a entender los patrones que el modelo está aprendiendo o confundiendo.
 
 ![Predicciones de la CNN](assets/figures/03_classification/03_cnn_predictions.png)
 
