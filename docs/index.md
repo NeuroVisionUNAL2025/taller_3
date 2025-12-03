@@ -49,7 +49,11 @@ CLAHE (Pizer et al., 1987) es una variación de la ecualización adaptativa del 
 
 ### 1.4. Clasificadores
 
-Se evaluaron múltiples clasificadores de Machine Learning (SVM, Random Forest, k-NN, Regresión Logística) utilizando las características extraídas manualmente, así como una Red Neuronal Convolucional (CNN) que aprende características automáticamente.
+#### Modelos Clásicos de Machine Learning
+Se evaluaron múltiples clasificadores de Machine Learning (SVM, Random Forest, k-NN, Regresión Logística) utilizando las características extraídas manualmente.
+
+#### Redes Neuronales Convolucionales (CNN)
+Las redes neuronales convolucionales fueron propuestas por LeCun et al. (1998), como LeNet-5, motivados por la tarea del reconocimiento de dígitos para automatizar la lectura de cheques bancarios basándose en una red neuronal multicapa entrenada con un algoritmo de retropropagación como aplicación del aprendizaje basado en gradientes. Este tipo de redes son especialmente útiles por su rendimiento en el aprendizaje de patrones, contornos y texturas. En este trabajo se implementó una arquitectura SimpleCNN que aprende características automáticamente a partir de las imágenes, sin necesidad de extracción manual de características.
 
 
 ## 2. Metodología
@@ -273,6 +277,8 @@ El preprocesamiento con CLAHE mejora significativamente la visibilidad de estruc
 ## 6. Referencias Bibliográficas
 
 Hu, M.-K. (1962). Visual pattern recognition by moment invariants. *IRE Transactions on Information Theory*, 8(2), 179–187. https://doi.org/10.1109/TIT.1962.1057692
+
+LeCun, Y., Bottou, L., Bengio, Y., & Haffner, P. (1998). Gradient-based learning applied to document recognition. *Proceedings of the IEEE*, 86(11), 2278–2324. http://vision.stanford.edu/cs598_spring07/papers/Lecun98.pdf
 
 Ojala, T., Pietikäinen, M., & Mäenpää, T. (2002). Multiresolution gray-scale and rotation invariant texture classification with Local Binary Patterns. *IEEE Transactions on Pattern Analysis and Machine Intelligence*, 24(7), 971–987. http://vision.stanford.edu/teaching/cs231b_spring1415/papers/lbp.pdf
 
