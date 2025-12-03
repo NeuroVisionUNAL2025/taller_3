@@ -93,6 +93,22 @@ Se implementaron los siguientes descriptores:
 
 El vector de características total tiene aproximadamente 1,823 dimensiones.
 
+**Visualizaciones de descriptores:**
+
+A continuación se muestran ejemplos de la extracción de algunos descriptores clave:
+
+![Imagen preprocesada](assets/figures/02_features/02_image_preprocessed.png)
+
+![Variaciones del Descriptor HOG](assets/figures/02_features/02_hog_variations.png)
+
+![Contorno Detectado](assets/figures/02_features/02_contour_descriptors.png)
+
+![Descriptores de Fourier - Magnitudes](assets/figures/02_features/02_fourier_descriptors.png)
+
+![Variaciones de LBP - Imágenes](assets/figures/02_features/02_lbp_images.png)
+
+![Variaciones de LBP - Histogramas](assets/figures/02_features/02_lbp_histograms.png)
+
 ### 2.4. Normalización y Reducción de Dimensionalidad
 
 1. **Normalización**: Se aplicó `StandardScaler` para estandarizar las características (media=0, std=1).
@@ -121,10 +137,26 @@ El vector de características total tiene aproximadamente 1,823 dimensiones.
 **Distribución de clases:**
 - El dataset está significativamente desbalanceado, con aproximadamente 2.9 veces más casos de PNEUMONIA que NORMAL en el conjunto de entrenamiento.
 
+![Distribución de clases](assets/figures/01_exploratory/01_class_distribution.png)
+
 **Tamaños de imágenes:**
 - Promedio: 1327×970 píxeles
 - Mediana: 1281×888 píxeles
 - Se decidió redimensionar a 256×256 para uniformidad y eficiencia computacional.
+
+![Análisis de tamaños de imágenes](assets/figures/01_exploratory/01_image_sizes.png)
+
+**Ejemplos de imágenes de ambas clases:**
+
+La siguiente figura muestra ejemplos de imágenes originales y su versión procesada con CLAHE:
+
+![Ejemplos de imágenes originales vs procesadas con CLAHE](assets/figures/01_exploratory/01_examples_original.png)
+
+**Efecto del preprocesamiento (CLAHE):**
+
+El preprocesamiento con CLAHE mejora significativamente la visibilidad de estructuras anatómicas en las radiografías. A continuación se muestra una comparación de los histogramas antes y después de aplicar CLAHE:
+
+![Comparación de histogramas antes y después de CLAHE](assets/figures/01_exploratory/01_histogram_comparison.png)
 
 ### 3.2. Resultados de Modelos Clásicos
 
@@ -194,6 +226,18 @@ En el conjunto de **validación**, la CNN obtuvo:
 - **Recall (PNEUMONIA)**: 1.00
 
 El modelo CNN también muestra un sesgo hacia la clase PNEUMONIA, con recall perfecto para esta clase pero bajo recall para NORMAL.
+
+**Matriz de confusión de la CNN:**
+
+![Matriz de confusión de la CNN](assets/figures/03_classification/03_cnn_confusion_matrix.png)
+
+**Curva ROC de la CNN:**
+
+![Curva ROC de la CNN](assets/figures/03_classification/03_cnn_roc_curve.png)
+
+**Ejemplos de predicciones de la CNN:**
+
+![Predicciones de la CNN](assets/figures/03_classification/03_cnn_predictions.png)
 
 
 ## 4. Análisis y Discusión
