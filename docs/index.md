@@ -370,3 +370,11 @@ Zahn, C.T., & Roskies, R.Z. (1972). Fourier descriptors for plane closed curves.
 
 ## Análisis de contribución individual
 
+* Juan José: Desarrollo del notebook preliminar, implementación de descriptores de forma (HOG, Momentos de Hu, Contorno, Fourier), planteamiento de ideas para el análisis de resultados.
+
+* Alexander: Desarrollo del pipeline de clasificación, implementación de descriptores de textura (LBP, GLCM, Gabor), implementación de modelos clásicos y CNN, planteamiento de ideas para el análisis de resultados. Construcción del marco teórico.
+
+* Yuricik: Elaboración del informe, documentación de experimentos y resultados, análisis de resultados y discusión, conclusiones. Desarrollo del marco teórico.
+
+* Thomas: Organización del repositorio, modularización de funciones, estandarización de notebooks, colaboración en la redacción del informe y publicación en GitHub Pages.
+
