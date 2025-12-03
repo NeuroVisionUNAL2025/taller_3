@@ -25,7 +25,6 @@ taller_3/
 │  ├─ 01_exploratory_analysis.ipynb
 │  ├─ 02_feature_extraction.ipynb
 │  └─ 03_classification_pipeline.ipynb
-├─ results/                    # Salidas (figuras, métricas)
 ├─ src/                        # Módulos reutilizables del proyecto
 │  ├─ __init__.py              # Inicialización del paquete
 │  ├─ data_loader.py           # load_image_paths, split_by_set, labels_to_numeric
@@ -44,10 +43,45 @@ taller_3/
 │  │  └─ training.py           # train_cnn, evaluate_cnn, save_model, load_model
 │  ├─ evaluation.py            # compute_metrics, compare_models, get_misclassified_samples
 │  ├─ visualization.py         # plot_confusion_matrix, plot_roc_curve, show_predictions, etc.
-│  └─ base/                    # Scripts base de desarrollo
+│  └─ base/                    # Código base original
+│     └─ Taller3_preliminar_v0.ipynb  # Notebook preliminar con ejecuciones
+│  ├─ __init__.py              # Inicialización del paquete
+│  ├─ data_loader.py           # load_image_paths, split_by_set, labels_to_numeric
+│  ├─ preprocessing.py         # read_and_preprocess, apply_clahe, normalize_image
+│  ├─ descriptors/             # Descriptores de características
+│  │  ├─ __init__.py
+│  │  ├─ shape.py              # descriptor_hog, descriptor_hu, descriptor_contorno, descriptor_fourier
+│  │  ├─ texture.py            # descriptor_lbp, descriptor_glcm, descriptor_gabor
+│  │  └─ statistics.py         # first_order_stats
+│  ├─ features.py              # extract_features_all, build_feature_matrix, normalize_features, apply_pca
+│  ├─ classical_models.py      # evaluate_model, train_all_models, cross_validate_models
+│  ├─ deep_learning/           # Módulos de Deep Learning
+│  │  ├─ __init__.py
+│  │  ├─ models.py             # SimpleCNN
+│  │  ├─ dataset.py            # ChestXrayDataset, create_dataloaders
+│  │  └─ training.py           # train_cnn, evaluate_cnn, save_model, load_model
+│  ├─ evaluation.py            # compute_metrics, compare_models, get_misclassified_samples
+│  ├─ visualization.py         # plot_confusion_matrix, plot_roc_curve, show_predictions, etc.
+│  └─ base/                    # Código base original
+│     └─ Taller3_preliminar_v0.ipynb  # Notebook preliminar con ejecuciones
 ├─ requirements.txt            # Dependencias de ejecución
 └─ README.md
 ```
+
+## Nota sobre los Notebooks
+
+**Importante**: El único notebook que contiene registros de ejecución (outputs y resultados) es el **notebook preliminar** ubicado en `src/base/Taller3_preliminar_v0.ipynb`. Este notebook contiene todo el código original desarrollado durante la fase inicial del proyecto, incluyendo todas las ejecuciones, resultados numéricos, visualizaciones embebidas y análisis realizados.
+
+La razón por la cual solo este notebook contiene outputs es que el desarrollo inicial y la ejecución de los experimentos se realizaron utilizando la potencia de cómputo de **Kaggle**, cuya plataforma no permite el uso directo de repositorios de GitHub. Kaggle solo permite trabajar con notebooks individuales, por lo que todo el código y los resultados se desarrollaron y ejecutaron en un único notebook preliminar.
+
+Los notebooks en el directorio `notebooks/` (`01_exploratory_analysis.ipynb`, `02_feature_extraction.ipynb`, `03_classification_pipeline.ipynb`) fueron creados **posteriormente** como parte del proceso de modularización del proyecto, una vez que el código fue migrado desde Kaggle al repositorio de GitHub. Estos notebooks:
+
+- Utilizan las funciones modularizadas del directorio `src/`
+- Están organizados por partes del proyecto (análisis exploratorio, extracción de características, clasificación)
+- No contienen outputs guardados, ya que fueron diseñados para ser ejecutados de forma independiente
+- Facilitan la reproducibilidad y el uso de las funciones reutilizables
+
+Para ver los resultados originales y las visualizaciones utilizadas en el informe, consulta el notebook preliminar en `src/base/Taller3_preliminar_v0.ipynb`.
 
 ## Dataset
 
